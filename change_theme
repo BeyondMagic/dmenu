@@ -1,0 +1,54 @@
+#!/usr/bin/env sh
+#
+# This will just change the theme of the config.h file
+# and then build it
+# 
+# Configure yourself the colours
+#
+# BeyondMagic © 2021
+
+origin=$(cd -- "$(dirname "$0")" >/dev/null 2>&1 && pwd -P); cd $origin
+
+[ "$1" = 'white' ] && {
+
+     nor_fg='#000000';    nor_bg='#ffffff'
+     sel_fg='#FFEFC4';    sel_bg='#111111'
+     out_fg='#BD9150';    out_bg='#111111'
+  sel_hi_fg='#F7497E'; sel_hi_bg='#ffffff'
+  nor_hi_fg='#BB292C'; nor_hi_bg='#eeeeee'
+
+} 
+
+[ "$1" = 'black' ] && {
+
+     nor_fg='#eeeeee';    nor_bg='#000000'
+     sel_fg='#1e1e1e';    sel_bg='#ffffff'
+     out_fg='#123456';    out_bg='#ffffff'
+  sel_hi_fg='#709af6'; sel_hi_bg='#ffffff'
+  nor_hi_fg='#999adb'; nor_hi_bg='#ffffff'
+
+}
+
+[ "$1" = 'black' ] || [ "$1" = 'white' ] || {
+
+  echo "Y'all got some theme? Maybe black or white..."
+  exit 1
+
+}
+
+# Build our new theme :)
+[ $nor_fg ] && {
+
+  sed -ri \
+    -e "s/\[SchemeNorm\] *= \{ \".*/[SchemeNorm] = { \"$nor_fg\", \"$nor_bg\" },/" \
+    -e "s/\[SchemeSel\] *= \{ \".*/[SchemeSel] = { \"$sel_fg\", \"$sel_bg\" },/" \
+    -e "s/\[SchemeOut\] *= \{ \".*/[SchemeOut] = { \"$out_fg\", \"$out_bg\" },/" \
+    -e "s/\[SchemeSelHighlight\] *= \{ \".*/[SchemeSelHighlight] = { \"$sel_hi_fg\", \"$sel_hi_bg\" },/" \
+    -e "s/\[SchemeNormHighlight\] *= \{ \".*/[SchemeNormHighlight] = { \"$nor_hi_fg\", \"$nor_hi_bg\" },/" \
+    config.h
+
+  doas -- make install
+
+}
+
+
