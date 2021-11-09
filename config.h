@@ -19,8 +19,7 @@ static const unsigned int min_width_multiplier = 6;   // This will multiply to f
 // -fn option overrides fonts[0]; default X11 font or font set
 static const char *fonts[] = {
 
-  "Hack:size=9.5:antialias=true",
-  "Unifont\\-JP:size=10",
+  "Fira Code:style=Regular:size=9.5:antialias=true",
   "JoyPixels:size=10",
 
 };
