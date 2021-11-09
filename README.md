@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/.github/preview.png" alt="Preview of dmenu_run on desktop">
+  <img src="/.github/preview-blur.png" alt="Preview of dmenu_run on desktop">
 </p>
 
 <p align="center"><b>dynamic menu</b></p>
